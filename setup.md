@@ -2,11 +2,21 @@
 *** Setup rails ***
 1. Install rvm
 > curl -L https://get.rvm.io | bash -s stable --ruby
+> rvm requirements
+> rvm install 2.1.2
+> rvm use 2.1.2 --default
 
-1. Create gemset 
+2. Create gemset 
 > rvm gemset use 2.1.2@rails-gulp-require --create
 
-2. Create rails
+If you get:
+RVM is not a function, selecting rubies with 'rvm use ...' will not work.
+
+Then make sure the following lines are in ~/.profile
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+source ~/.rvm/scripts/rvm
+
+3. Create rails
 > rails new rails-gulp-require -O -V --no-skip-spring -J -T --no-rc
 
 Error fix:
