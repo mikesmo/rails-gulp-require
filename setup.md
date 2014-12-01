@@ -21,9 +21,26 @@ source ~/.rvm/scripts/rvm
 
 Error fix:
 Gem::RemoteFetcher::UnknownHostError: no such name
+See: http://railsapps.github.io/openssl-certificate-verify-failed.html
 > rvm osx-ssl-certs status all
 if the ssl's are old:
 > rvm osx-ssl-certs update all
+
+Update brew:
+> cd /usr/local
+> git fetch origin
+> git reset --hard origin/master
+
+Then:
+> brew update
+> brew uninstall openssl
+> brew install openssl
+> brew link openssl --force
+> brew install curl-ca-bundle
+
+Turns out: rubygems.org was down. Change Gemfile to:
+source 'https://ruby.taobao.org/'
+
 
 *** Install Node and npm using nvm ***
 http://www.wenincode.com/installing-node-jsnpm-without-sudo/
@@ -47,7 +64,10 @@ http://www.wenincode.com/installing-node-jsnpm-without-sudo/
 
 *** Install global npm packages ***
 
-1. Install Yeoman
-> npm install -g yo
+1. Install gulp
+> npm install -g gulp
+
+2. Create npm package
+> npm init
 
 
