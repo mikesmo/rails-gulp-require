@@ -6,7 +6,7 @@ define(function (require) {
 
     // Load library/vendor modules using
     // full IDs, like:
-    var print = require('print');
+    var print = require('../lib/print');
 
     print(messages.getHello());
 });

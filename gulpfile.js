@@ -9,10 +9,7 @@ var dest = 'public/';
 var vendor = 'public/vendor/';
 
 var requireConfig = {
-    baseUrl: 'app/assets/javascripts',
-    paths: {
-        app: '/assets/app'
-    }
+    findNestedDependencies : true
 };
 var options = {
     umd: false
@@ -22,12 +19,12 @@ gulp.task('scripts', function () {
     var javaScriptFromCoffeeScript = gulp.src('app/assets/javascripts/*.coffee')
        .pipe(coffee());
 
-    var js = gulp.src('app/assets/javascripts/*.js');
+    var js = gulp.src('app/assets/javascripts/**/*.js');
     var jquery = gulp.src(vendor + 'jquery/dist/jquery.min.js');
 
     //return es.merge(javaScriptFromCoffeeScript, js, jquery)
-    return gulp.src('app/assets/javascripts/*.js')
-        .pipe(amdOptimize('index', requireConfig))
+    return gulp.src('app/assets/javascripts/**/*.js')
+        .pipe(amdOptimize('app', requireConfig))
         .pipe(concat('application.min.js'))
         //.pipe(uglify())
         .pipe(gulp.dest(dest + 'javascripts'));
