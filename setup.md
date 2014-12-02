@@ -17,7 +17,7 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 source ~/.rvm/scripts/rvm
 
 3. Create rails
-> rails new rails-gulp-require -O -V --no-skip-spring -J -T --no-rc
+> rails new rails-gulp-require -O -V --no-skip-spring -T --no-rc
 
 Error fix:
 Gem::RemoteFetcher::UnknownHostError: no such name
@@ -62,12 +62,26 @@ http://www.wenincode.com/installing-node-jsnpm-without-sudo/
 > npm -v
 
 
-*** Install global npm packages ***
+*** Install npm packages ***
 
-1. Install gulp
+1. Install gulp gloabally
 > npm install -g gulp
 
 2. Create npm package
 > npm init
 
+3. Install gulp
+> npm install gulp --save-dev
+
+4. Install gulp-uglify
+> npm install gulp-uglify --save-dev
+
+5. Install gulp-concat
+> npm install gulp-concat --save-dev
+
+6. Install gulp-coffee
+> npm install gulp-coffee --save-dev
+
+7. Install event-stream
+> npm install event-stream --save-dev
 

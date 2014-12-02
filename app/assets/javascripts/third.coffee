@@ -1,0 +1,2 @@
+myThird = () ->
+  'third'
