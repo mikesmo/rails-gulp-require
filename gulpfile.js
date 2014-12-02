@@ -10,8 +10,9 @@ var vendor = 'public/vendor/';
 
 var requireConfig = {
     findNestedDependencies : true,
+    baseUrl: 'app/assets/javascripts',
     paths: {
-        print: "app/assets/javascripts/lib/print"
+        print: 'lib/print'
     }
 };
 var options = {
