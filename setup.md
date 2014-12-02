@@ -62,7 +62,7 @@ http://www.wenincode.com/installing-node-jsnpm-without-sudo/
 > npm -v
 
 
-*** Install npm packages ***
+*** Install gulp packages ***
 
 1. Install gulp gloabally
 > npm install -g gulp
@@ -84,4 +84,15 @@ http://www.wenincode.com/installing-node-jsnpm-without-sudo/
 
 7. Install event-stream
 > npm install event-stream --save-dev
+
+*** Install bower packages ***
+
+1. Install bower:
+> npm install -g bower
+
+2. Create bower package
+> bower init
+
+3. Install jquery
+> bower install jquery --save
 
