@@ -3,7 +3,7 @@
 <head>
   <title>RailsGulpRequires</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application.min', 'data-turbolinks-track' => true %>
+  <script data-main="assets/app" src="assets/lib/require.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
