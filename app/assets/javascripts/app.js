@@ -6,8 +6,8 @@
 requirejs.config({
     baseUrl: '/assets/lib',
     paths: {
-        app: '/assets/app',
-        urlArgs: "bust=" +  (new Date()).getTime()
+        app: '/assets/app' //,
+        //urlArgs: "bust=" +  (new Date()).getTime()
     }
 });
 
