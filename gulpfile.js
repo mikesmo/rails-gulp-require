@@ -9,7 +9,10 @@ var dest = 'public/';
 var vendor = 'public/vendor/';
 
 var requireConfig = {
-    findNestedDependencies : true
+    findNestedDependencies : true,
+    paths: {
+        print: "app/assets/javascripts/lib/print"
+    }
 };
 var options = {
     umd: false
