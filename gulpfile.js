@@ -27,8 +27,8 @@ gulp.task('scripts', function () {
 
     //return es.merge(javaScriptFromCoffeeScript, js, jquery)
     return gulp.src('app/assets/javascripts/*.js')
-        .pipe(amdOptimize('app', requireConfig))
+        .pipe(amdOptimize('index', requireConfig))
         .pipe(concat('application.min.js'))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest(dest + 'javascripts'));
 });
