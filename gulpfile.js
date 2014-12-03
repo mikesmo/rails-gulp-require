@@ -1,5 +1,3 @@
-var version = '0.0.0'
-
 require("coffee-script/register");
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
@@ -10,9 +8,10 @@ var es = require('event-stream');
 var htmlreplace = require('gulp-html-replace');
 
 var package = require("./package.json");
+var version = package.version;
 
 var src = 'app/assets/javascripts/';
-var dest = 'public/' + package.version;
+var dest = 'public/' + version;
 var javascriptDest = dest + '/javascripts';
 
 gulp.task('scripts', function () {
@@ -38,13 +37,14 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('html', function() {
-    var dest = 'app/views/layouts/';
-    gulp.src(dest + 'application.html.erb')
+    var path = 'app/views/layouts/';
+    gulp.src(path + 'application.html.erb')
+        .pipe(concat('application-public.html.erb'))
         .pipe(htmlreplace({
             js: {
-                src: [['1.0.0/javascripts/application.min', '1.0.0/javascripts/require.min.js']],
+                src: [[version + '/javascripts/application.min', version + '/javascripts/require.min.js']],
                 tpl: '<script data-main="%s" src="%s"></script>'
             }
         }))
-        .pipe(gulp.dest(dest));
+        .pipe(gulp.dest(path));
 });
