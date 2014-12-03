@@ -8,8 +8,10 @@ var coffee = require('gulp-coffee');
 var amdOptimize = require("amd-optimize");
 var es = require('event-stream');
 
+var package = require("./package.json");
+
 var src = 'app/assets/javascripts/';
-var dest = 'public/' + version;
+var dest = 'public/' + package.version;
 var javascriptDest = dest + '/javascripts';
 
 
