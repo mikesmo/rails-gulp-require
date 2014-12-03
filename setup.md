@@ -85,6 +85,9 @@ http://www.wenincode.com/installing-node-jsnpm-without-sudo/
 7. Install event-stream
 > npm install event-stream --save-dev
 
+8. Install amd-optimize 
+> npm install amd-optimize --save-dev
+
 *** Install bower packages ***
 
 1. Install bower:
