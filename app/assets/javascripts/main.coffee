@@ -15,15 +15,9 @@ require.config(
 require([
     'angular'
     'domReady'
-    #'TextController'
+    'app'
   ],
 (angular, domReady) ->
-  #application = angular.module('myAngularApp', ['controllers'])
-  app = angular.module('myAngularApp', [])
-  app.controller('TextController', ($scope) ->
-    $scope.message = 'This is a message'
-  )
-
   domReady(
     () ->
       angular.bootstrap(document, ['myAngularApp'])
