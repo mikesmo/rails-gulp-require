@@ -1,6 +1,6 @@
 'use strict'
 
-require.config(
+@amdConfig = ->
   deps: ['jquery']
   paths:
     jquery: 'vendor/jquery/dist/jquery'
@@ -10,17 +10,19 @@ require.config(
     angular:
       deps: ['jquery']
       exports: 'angular'
-)
 
-require([
-    'angular'
-    'domReady'
-    'app'
-  ],
-(angular, domReady) ->
-  domReady(
-    () ->
-      angular.bootstrap(document, ['myAngularApp'])
+if require.config?
+  require.config(@amdConfig())
+
+  require([
+      'angular'
+      'domReady'
+      'app'
+    ],
+  (angular, domReady) ->
+    domReady(
+      () ->
+        angular.bootstrap(document, ['myAngularApp'])
+    )
   )
-)
 

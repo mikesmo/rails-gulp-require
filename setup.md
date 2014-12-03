@@ -99,3 +99,15 @@ http://www.wenincode.com/installing-node-jsnpm-without-sudo/
 3. Install jquery
 > bower install jquery --save
 
+*** Install nodejs plugin for RubyMine ***
+1. In RubyMine navigate to Preferences->Plugins and click "Install JetBrains plugins"
+
+2. Select Nodejs and install
+
+3. Restart IDE
+
+*** debuggin gulp ***
+http://blog.jetbrains.com/webstorm/2014/11/gulp-in-webstorm-9/
+
+
+

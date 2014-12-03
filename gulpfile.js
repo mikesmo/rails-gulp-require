@@ -1,3 +1,4 @@
+require("coffee-script/register");
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
@@ -8,27 +9,30 @@ var es = require('event-stream');
 var dest = 'public/';
 var vendor = '/public/vendor/';
 
-var requireConfig = {
-    findNestedDependencies : true,
-    baseUrl: 'app/assets/javascripts',
-    paths: {
-        jquery: 'vendor/jquery/dist/jquery.min',
-        angular: 'vendor/angular/angular.min',
-        domReady: 'vendor/domReady/domReady'
-    },
-    shim: {
-        angular: {
-            deps: ['jquery'],
-            exports: 'angular'
-        }
-    }
-};
 
 var options = {
     umd: false
 };
 
+gulp.task('configToJs', function () {
+    gulp.src('./app/assets/javascripts/main.coffee')
+        .pipe(coffee())
+        .pipe(gulp.dest('./'));
+});
+
+gulp.task('configEval', function () {
+    var configCoffee = require('./config.coffee');
+    var config = configCoffee.requireConfig();
+    console.log(JSON.stringify(config));
+    console.log(config.paths.jquery);
+});
+
 gulp.task('scripts', function () {
+    var main = require('./app/assets/javascripts/main.coffee');
+    var amdConfig = main.amdConfig();
+    amdConfig.baseUrl = 'app/assets/javascripts';
+    amdConfig.findNestedDependencies = true;
+
     var javaScriptFromCoffeeScript = gulp.src('app/assets/javascripts/**/*.coffee')
        .pipe(coffee());
 
@@ -38,7 +42,7 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest(dest + 'javascripts'));
 
     return es.merge(javaScriptFromCoffeeScript)
-        .pipe(amdOptimize('main', requireConfig))
+        .pipe(amdOptimize('main', amdConfig))
         .pipe(concat('application.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest(dest + 'javascripts'));
