@@ -1,6 +1,6 @@
 'use strict'
 
-define(['angular', 'controllers'], (angular) ->
+define(['angular'], (angular) ->
 
   controllers = angular.module('controllers')
 
