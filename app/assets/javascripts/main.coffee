@@ -3,9 +3,9 @@
 require.config(
   deps: ['jquery']
   paths:
-    jquery: '/vendor/jquery/dist/jquery'
-    angular: '/vendor/angular/angular'
-    domReady: '/vendor/domReady/domReady'
+    jquery: 'vendor/jquery/dist/jquery'
+    angular: 'vendor/angular/angular'
+    domReady: 'vendor/domReady/domReady'
   shim:
     angular:
       deps: ['jquery']
