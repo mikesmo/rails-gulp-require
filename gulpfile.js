@@ -7,13 +7,13 @@ var concat = require('gulp-concat');
 var coffee = require('gulp-coffee');
 var amdOptimize = require("amd-optimize");
 var es = require('event-stream');
+var htmlreplace = require('gulp-html-replace');
 
 var package = require("./package.json");
 
 var src = 'app/assets/javascripts/';
 var dest = 'public/' + package.version;
 var javascriptDest = dest + '/javascripts';
-
 
 gulp.task('scripts', function () {
 
@@ -35,4 +35,16 @@ gulp.task('scripts', function () {
     return es.merge(requirejs, javaScriptFromCoffeeScript)
         .pipe(uglify())
         .pipe(gulp.dest(javascriptDest));
+});
+
+gulp.task('html', function() {
+    var dest = 'app/views/layouts/';
+    gulp.src(dest + 'application.html.erb')
+        .pipe(htmlreplace({
+            js: {
+                src: [['1.0.0/javascripts/application.min', '1.0.0/javascripts/require.min.js']],
+                tpl: '<script data-main="%s" src="%s"></script>'
+            }
+        }))
+        .pipe(gulp.dest(dest));
 });
