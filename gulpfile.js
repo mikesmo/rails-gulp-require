@@ -29,14 +29,15 @@ var options = {
 };
 
 gulp.task('scripts', function () {
-    var javaScriptFromCoffeeScript = gulp.src('app/assets/javascripts/*.coffee')
+    var javaScriptFromCoffeeScript = gulp.src('app/assets/javascripts/**/*.coffee')
        .pipe(coffee());
 
-    var js = gulp.src('app/assets/javascripts/**/*.js');
-    var jquery = gulp.src(vendor + 'jquery/dist/jquery.min.js');
-    var vendor = gulp.src('public/vendor/**/*.js');
+    var requirejs = gulp.src('app/assets/javascripts/vendor/requirejs/require.js')
+        .pipe(concat('require.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(dest + 'javascripts'));
 
-    return es.merge(javaScriptFromCoffeeScript, vendor)
+    return es.merge(javaScriptFromCoffeeScript)
         .pipe(amdOptimize('main', requireConfig))
         .pipe(concat('application.min.js'))
         .pipe(uglify())
