@@ -6,15 +6,24 @@ var amdOptimize = require("amd-optimize");
 var es = require('event-stream');
 
 var dest = 'public/';
-var vendor = 'public/vendor/';
+var vendor = '/public/vendor/';
 
 var requireConfig = {
     findNestedDependencies : true,
     baseUrl: 'app/assets/javascripts',
     paths: {
-        print: 'lib/print'
+        jquery: 'vendor/jquery/dist/jquery.min',
+        angular: 'vendor/angular/angular.min',
+        domReady: 'vendor/domReady/domReady'
+    },
+    shim: {
+        angular: {
+            deps: ['jquery'],
+            exports: 'angular'
+        }
     }
 };
+
 var options = {
     umd: false
 };
@@ -25,11 +34,11 @@ gulp.task('scripts', function () {
 
     var js = gulp.src('app/assets/javascripts/**/*.js');
     var jquery = gulp.src(vendor + 'jquery/dist/jquery.min.js');
+    var vendor = gulp.src('public/vendor/**/*.js');
 
-    //return es.merge(javaScriptFromCoffeeScript, js, jquery)
-    return gulp.src('app/assets/javascripts/**/*.js')
-        .pipe(amdOptimize('app', requireConfig))
+    return es.merge(javaScriptFromCoffeeScript, vendor)
+        .pipe(amdOptimize('main', requireConfig))
         .pipe(concat('application.min.js'))
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest(dest + 'javascripts'));
 });
